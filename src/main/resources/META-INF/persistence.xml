@@ -3,6 +3,7 @@
   <persistence-unit name="nerdboardsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.Jogador</class>
+    <class>entity.Mesa</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <!--<bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>

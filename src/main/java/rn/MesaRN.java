@@ -1,6 +1,6 @@
 package rn;
 
-import entity.Jogador;
+import entity.Mesa;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,8 +11,7 @@ import javax.persistence.Query;
  *
  * @author ibrum
  */
-public class JogadorRN {
-    
+public class MesaRN {
     private static final String NOMEPU= "nerdboardsPU";
     private static EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory(NOMEPU);
     
@@ -20,54 +19,54 @@ public class JogadorRN {
         return FACTORY.createEntityManager();
     }
     
-    public List<Jogador> listar() {
+    public List<Mesa> listar() {
         EntityManager manager = createManager();
         
-        Query query = manager.createQuery("SELECT j FROM Jogador j");
-        List<Jogador> listaJogadores = query.getResultList();
-        return listaJogadores;
+        Query query = manager.createQuery("SELECT m FROM Mesa m");
+        List<Mesa> listaMesas = query.getResultList();
+        return listaMesas;
     }
     
-    public Jogador buscarPorId(Long id) {
+    public Mesa buscarPorId(Long id) {
         EntityManager manager = createManager();
-        Jogador jogador = manager.find(Jogador.class, id);
+        Mesa mesa = manager.find(Mesa.class, id);
         manager.close();
-        return jogador;
+        return mesa;
     }
     
-    public Jogador inserir(Jogador jogador) {
+    public Mesa inserir(Mesa mesa) {
         EntityManager manager = createManager();
         
         manager.getTransaction().begin();
-        manager.persist(jogador);
+        manager.persist(mesa);
         manager.getTransaction().commit();
         
         manager.close();
         
-        return (jogador);
+        return (mesa);
     }
     
-    public Jogador atualizar(Jogador jogador) {
+    public Mesa atualizar(Mesa mesa) {
         EntityManager manager = createManager();
         
         manager.getTransaction().begin();
-        jogador = manager.merge(jogador);
+        mesa = manager.merge(mesa);
         manager.getTransaction().commit();
         
         manager.close();
-        return (jogador);
+        return (mesa);
     }
     
-    public Jogador deletar(Long id) {
+    public Mesa deletar(Long id) {
         EntityManager manager = createManager();
-        Jogador jogador = manager.find(Jogador.class, id);
+        Mesa mesa = manager.find(Mesa.class, id);
         
         manager.getTransaction().begin();
-        manager.remove(jogador);
+        manager.remove(mesa);
         manager.getTransaction().commit();
         
         manager.close();
         
-        return (jogador);
+        return (mesa);
     }
 }
